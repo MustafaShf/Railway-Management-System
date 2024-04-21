@@ -1,0 +1,28 @@
+#pragma once
+#include<iostream>
+#include"raylib.h"
+#include<fstream>
+#include<string>
+
+using namespace std;
+
+class Accounts
+{
+	//Assume blah blah
+};
+
+class Admin : protected Accounts
+{
+private:
+	int routePrice;
+	int PriceOfExecutiveSeat;
+	int PriceOfEconomicSeat;
+	int PriceOfBusinessSeat;
+public:
+	void SetAvailabilityOfTrain();
+	void SetAvailableSchedule();
+	void SetFare();
+	static int GetRouteData(int*& all_routes, string*& start, string*& end);
+	static void ChangeRouteAvailability(int* all_routes);
+	void viewFeedback();
+};

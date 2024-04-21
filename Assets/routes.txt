@@ -1,0 +1,5 @@
+1 Lahore Karachi
+1 Karachi Lahore
+0 Lahore Murree
+0 Murree Lahore
+1 Lahore Islamabad
