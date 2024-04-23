@@ -1,12 +1,13 @@
 #include"MHM_Classes.h"
 
 
-int Admin :: GetRouteData(int* &all_routes, string*&start, string *&end)
+int Admin :: GetData(int* &all_routes, string*&start, string *&end, int**&schedules)
 {	
-	all_routes = new int[5];			//will be a fixed number, deoending upon number of routes in the data base
+	all_routes = new int[4];			//will be a fixed number, deoending upon number of routes in the data base
 	int i = 0, number_of_rectangles=0;
-	start = new string[5];
-	end = new string[5];
+	start = new string[4];
+	end = new string[4];
+	schedules = new int* [4];	//will contain available schedules for each route
 	ifstream routes;
 	routes.open("Assets\\routes.txt");
 	if (!routes.is_open())
@@ -14,10 +15,22 @@ int Admin :: GetRouteData(int* &all_routes, string*&start, string *&end)
 		cout << "Unable to open file" << endl;
 		exit(0);
 	}
-	while (routes >> all_routes[i] >> start[i] >> end[i])
+
+	while (i < 4 && routes >> all_routes[i] >> start[i] >> end[i])
 	{
+		schedules[i] = new int[24];
+
+		for (int j = 0; j < 24; ++j)
+		{
+			if (!(routes >> schedules[i][j]))
+			{
+				cout << "Error reading schedule data for route " << all_routes[i] << std::endl;
+				exit(0);
+			}
+		}
 		i++;
 	}
+
 
 	routes.close();
 	return i;
