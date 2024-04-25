@@ -22,7 +22,7 @@ public:
 	void SetAvailabilityOfTrain();
 	void SetAvailableSchedule();
 	void SetFare();
-	static int GetData(int*& all_routes, string*& start, string*& end, int**&schedules);
+	static int GetData(int*& all_routes, string*& start, string*& end, int**& schedules);
 	static void ChangeRouteAvailability(int* all_routes);
 	void viewFeedback();
 };
