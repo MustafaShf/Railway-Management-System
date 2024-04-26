@@ -1,6 +1,5 @@
 #include"MHM_Classes.h"
 
-
 int Admin::GetData(int*& all_routes, string*& start, string*& end, int**& schedules)
 {
 	all_routes = new int[6];			//will be a fixed number, deoending upon number of routes in the data base
@@ -44,6 +43,7 @@ int Admin::GetData(int*& all_routes, string*& start, string*& end, int**& schedu
 
 void Admin::ChangeRouteAvailability(int* all_routes)
 {
+	cout << "\n\nNIGGA\n\n";
 	string a;
 	int i = 0;
 	ifstream iroutes("Assets\\routes.txt");
