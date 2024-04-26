@@ -60,6 +60,11 @@ namespace MHMTMSV21
 	private: System::Windows::Forms::CheckedListBox^ routes;
 	private: System::Windows::Forms::Button^ Continue1;
 	private: System::Windows::Forms::PictureBox^ RouteListBox;
+	private: System::Windows::Forms::Button^ schedulesButton;
+	private: System::Windows::Forms::PictureBox^ schedulesBox;
+	private: System::Windows::Forms::Button^ Continue2;
+
+
 
 
 
@@ -89,7 +94,11 @@ namespace MHMTMSV21
 			this->routes = (gcnew System::Windows::Forms::CheckedListBox());
 			this->Continue1 = (gcnew System::Windows::Forms::Button());
 			this->RouteListBox = (gcnew System::Windows::Forms::PictureBox());
+			this->schedulesButton = (gcnew System::Windows::Forms::Button());
+			this->schedulesBox = (gcnew System::Windows::Forms::PictureBox());
+			this->Continue2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->RouteListBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->schedulesBox))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// routesButton
@@ -98,7 +107,7 @@ namespace MHMTMSV21
 			this->routesButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->routesButton->FlatAppearance->BorderSize = 0;
 			this->routesButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->routesButton->Location = System::Drawing::Point(128, 103);
+			this->routesButton->Location = System::Drawing::Point(175, 196);
 			this->routesButton->Name = L"routesButton";
 			this->routesButton->Size = System::Drawing::Size(454, 242);
 			this->routesButton->TabIndex = 0;
@@ -116,7 +125,7 @@ namespace MHMTMSV21
 				static_cast<System::Byte>(0)));
 			this->routes->ForeColor = System::Drawing::SystemColors::Info;
 			this->routes->FormattingEnabled = true;
-			this->routes->Location = System::Drawing::Point(704, 267);
+			this->routes->Location = System::Drawing::Point(704, 275);
 			this->routes->Name = L"routes";
 			this->routes->ScrollAlwaysVisible = true;
 			this->routes->Size = System::Drawing::Size(626, 322);
@@ -145,16 +154,56 @@ namespace MHMTMSV21
 			// 
 			// RouteListBox
 			// 
-			this->RouteListBox->BackColor = System::Drawing::Color::White;
+			this->RouteListBox->BackColor = System::Drawing::Color::Transparent;
 			this->RouteListBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->RouteListBox->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"RouteListBox.Image")));
-			this->RouteListBox->Location = System::Drawing::Point(530, 112);
+			this->RouteListBox->Location = System::Drawing::Point(530, 120);
 			this->RouteListBox->Name = L"RouteListBox";
 			this->RouteListBox->Size = System::Drawing::Size(806, 678);
 			this->RouteListBox->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->RouteListBox->TabIndex = 3;
 			this->RouteListBox->TabStop = false;
 			this->RouteListBox->Visible = false;
+			// 
+			// schedulesButton
+			// 
+			this->schedulesButton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"schedulesButton.BackgroundImage")));
+			this->schedulesButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->schedulesButton->FlatAppearance->BorderSize = 0;
+			this->schedulesButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->schedulesButton->Location = System::Drawing::Point(1259, 196);
+			this->schedulesButton->Name = L"schedulesButton";
+			this->schedulesButton->Size = System::Drawing::Size(454, 242);
+			this->schedulesButton->TabIndex = 4;
+			this->schedulesButton->UseVisualStyleBackColor = true;
+			this->schedulesButton->Click += gcnew System::EventHandler(this, &MHM_Admin0::schedulesButton_Click);
+			// 
+			// schedulesBox
+			// 
+			this->schedulesBox->BackColor = System::Drawing::Color::Transparent;
+			this->schedulesBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->schedulesBox->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"schedulesBox.Image")));
+			this->schedulesBox->Location = System::Drawing::Point(530, 120);
+			this->schedulesBox->Name = L"schedulesBox";
+			this->schedulesBox->Size = System::Drawing::Size(806, 678);
+			this->schedulesBox->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->schedulesBox->TabIndex = 5;
+			this->schedulesBox->TabStop = false;
+			this->schedulesBox->Visible = false;
+			// 
+			// Continue2
+			// 
+			this->Continue2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Continue2.BackgroundImage")));
+			this->Continue2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->Continue2->FlatAppearance->BorderSize = 0;
+			this->Continue2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->Continue2->Location = System::Drawing::Point(759, 620);
+			this->Continue2->Name = L"Continue2";
+			this->Continue2->Size = System::Drawing::Size(324, 98);
+			this->Continue2->TabIndex = 6;
+			this->Continue2->UseVisualStyleBackColor = true;
+			this->Continue2->Visible = false;
+			this->Continue2->Click += gcnew System::EventHandler(this, &MHM_Admin0::Continue2_Click);
 			// 
 			// MHM_Admin0
 			// 
@@ -165,15 +214,19 @@ namespace MHMTMSV21
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1924, 1050);
+			this->Controls->Add(this->Continue2);
+			this->Controls->Add(this->schedulesBox);
 			this->Controls->Add(this->routes);
 			this->Controls->Add(this->Continue1);
 			this->Controls->Add(this->RouteListBox);
 			this->Controls->Add(this->routesButton);
+			this->Controls->Add(this->schedulesButton);
 			this->DoubleBuffered = true;
 			this->Name = L"MHM_Admin0";
 			this->Text = L"MHM_Admin0";
 			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->RouteListBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->schedulesBox))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -182,20 +235,29 @@ namespace MHMTMSV21
 	private: System::Void routesButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->Continue1->Visible = true;
+		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\BlurClearBG.png");
+		this->routesButton->Visible = false;
+		this->schedulesButton->Visible = false;
 		this->routes->Visible = true;
 		this->RouteListBox->Visible = true;
 	}
+
 	//------------------------ROUTES CHECK LIST BOX BUTTON CLICKED--------------------------------------
 	private: System::Void routes_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
 	{
 
 	}
+
 	//------------------------ROUTES CONTINUE BUTTON CLICKED---------------------------------------------
 	private: System::Void Continue1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->routes->Visible = false;
 		this->Continue1->Visible = false;
 		this->RouteListBox->Visible = false;
+		this->routesButton->Visible = true;
+		this->schedulesButton->Visible = true;
+		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\AdminBG.png");
+
 
 		for (int i = 0; i < routes->Items->Count; i++)
 		{
@@ -207,6 +269,24 @@ namespace MHMTMSV21
 		Admin::ChangeRouteAvailability(all_routes);
 	}
 
+	//-------------------------------SCHEDULES BUTTON CLICKED----------------------------------------------
+	private: System::Void schedulesButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\BlurClearBG.png");
+		this->routesButton->Visible = false;
+		this->schedulesButton->Visible = false;
+		this->Continue2->Visible = true;
+		this->schedulesBox->Visible = true;
+	}
 
-	};
+	//----------------------------SCHEDULES CONTINUE BUTTON CLICKED-------------------------------------------
+	private: System::Void Continue2_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\AdminBG.png");
+		this->Continue2->Visible = false;
+		this->schedulesBox->Visible = false;
+		this->routesButton->Visible = true;
+		this->schedulesButton->Visible = true;
+	}
+};
 }

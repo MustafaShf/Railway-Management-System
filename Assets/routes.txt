@@ -2,5 +2,5 @@
 0 Lahore Murree
 0 Karachi Lahore
 1 Karachi Murree
-0 Murree Lahore
-1 Murree Karachi
+1 Murree Lahore
+0 Murree Karachi
