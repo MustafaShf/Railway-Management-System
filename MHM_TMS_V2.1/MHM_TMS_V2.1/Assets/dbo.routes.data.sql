@@ -1,0 +1,6 @@
+INSERT INTO [dbo].[routes] ([Id], [availability], [start], [end]) VALUES (1, 1, N'Lahore', N'Karachi')
+INSERT INTO [dbo].[routes] ([Id], [availability], [start], [end]) VALUES (2, 1, N'Lahore', N'Murree')
+INSERT INTO [dbo].[routes] ([Id], [availability], [start], [end]) VALUES (3, 0, N'Karachi', N'Lahore')
+INSERT INTO [dbo].[routes] ([Id], [availability], [start], [end]) VALUES (4, 0, N'Karachi', N'Murree')
+INSERT INTO [dbo].[routes] ([Id], [availability], [start], [end]) VALUES (5, 1, N'Murree', N'Lahore')
+INSERT INTO [dbo].[routes] ([Id], [availability], [start], [end]) VALUES (6, 0, N'Murree', N'Karachi')

@@ -1,16 +1,7 @@
-#pragma once
-#include"DataStorers.h"	//gets us all the data modifiers plus class functions
-
+#include"DataStorers.h"
+//#include"MHM_Functions.h"
 namespace MHMTMSV21
 {
-
-	using namespace System;
-	using namespace System::ComponentModel;
-	using namespace System::Collections;
-	using namespace System::Windows::Forms;
-	using namespace System::Data;
-	using namespace System::Drawing;
-
 
 	/// <summary>
 	/// Summary for MHM_Admin0
@@ -20,7 +11,7 @@ namespace MHMTMSV21
 	public:
 		MHM_Admin0(void)
 		{
-			//--------------------------------------------------INITIALIZE AND EARLY STUFF ETC-------------------
+			//-------------------------------------INITIALIZE AND EARLY STUFF ETC----------------------------------
 			InitializeComponent();
 			routes->DrawMode = System::Windows::Forms::DrawMode::OwnerDrawFixed;
 			//routes->DrawItem += gcnew System::Windows::Forms::DrawItemEventHandler(this, &MHM_Admin0::routes_DrawItem);
@@ -31,7 +22,7 @@ namespace MHMTMSV21
 			while (i < number_of_routes)
 			{
 				int checkboxState = all_routes[i];
-				int totalLength = strlen(Start[0].c_str()) + strlen(" to ") + strlen(End[0].c_str()) + 1; // +1 for null terminator
+				size_t totalLength = strlen(Start[0].c_str()) + strlen(" to ") + strlen(End[0].c_str()) + 1; // +1 for null terminator
 
 				String^ itemText = gcnew String((Start[i] + " to " + End[i]).c_str());
 
