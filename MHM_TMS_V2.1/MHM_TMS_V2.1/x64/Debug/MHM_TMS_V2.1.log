@@ -1,0 +1,4 @@
+﻿  MHM_Admin0.cpp
+C:\Users\Muhammad Hassaan\Desktop\MHM_TMS_V2.1\MHM_TMS_V2.1\MHM_Admin0.h(34,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  MHM_Admin0.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  MHM_TMS_V2.1.vcxproj -> C:\Users\Muhammad Hassaan\Desktop\MHM_TMS_V2.1\x64\Debug\MHM_TMS_V2.1.exe
