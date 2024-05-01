@@ -28,6 +28,7 @@ class dataRetriever
 	int availability;
 	string start;
 	string end;
+	int* schedule;
 public:
 	void dataSetter(int x, string y, string z)
 	{
@@ -39,6 +40,15 @@ public:
 	void availabilitySetter(int x)
 	{
 		availability = x;
+	}
+
+	void scheduleSetter(int*ptr)
+	{
+		schedule = new int[24];
+		for (int i = 0; i < 24; i++)
+		{
+			schedule[i] = ptr[i];
+		}
 	}
 
 	int availabilityGetter()
@@ -55,6 +65,11 @@ public:
 	{
 		return end;
 	}
+
+	int* scheduleGetter()
+	{
+		return schedule;
+	}
 };
 
 class Admin : protected Accounts
@@ -65,11 +80,38 @@ private:
 	int PriceOfEconomicSeat;
 	int PriceOfBusinessSeat;
 public:
+	void AdminSetter(int w,int x,int y, int z)
+	{
+		routePrice = w;
+		PriceOfExecutiveSeat = x;
+		PriceOfEconomicSeat = y;
+		PriceOfBusinessSeat = z;
+	}
+
+	int routePriceGetter()
+	{
+		return routePrice;
+	}
+
+	int ExecutiveGetter()
+	{
+		return PriceOfExecutiveSeat;
+	}
+
+	int EconomicGetter()
+	{
+		return PriceOfEconomicSeat;
+	}
+
+	int BusinessGetter()
+	{
+		return PriceOfBusinessSeat;
+	}
 
 	void SetAvailabilityOfTrain();
 	void SetAvailableSchedule();
-	void SetFare();
-	int GetData(dataRetriever * &a);
+	void SetFare(String^ text1, String^ text2, String^ text3, String^ text4, Admin& admin);
+	int GetData(dataRetriever * &a, Admin &admin);
 	void ChangeRouteAvailability(dataRetriever* all_routes);
 	void viewFeedback();
 };
