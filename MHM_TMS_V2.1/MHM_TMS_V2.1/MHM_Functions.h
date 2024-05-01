@@ -1,8 +1,11 @@
+#ifndef Function_H
+#define Function_H
 #include"MHM_Classes.h"
 
-int Admin::GetData(int*& all_routes, string*& start, string*& end, int**& schedules)
+int Admin::GetData(dataRetriever * &a)
 {
-	int i = 0, number_of_rectangles = 0;
+	int i = 0;
+	int rowCount = 0;
 	//conecting to the database and getting the data
 	try
 	{
@@ -18,16 +21,12 @@ int Admin::GetData(int*& all_routes, string*& start, string*& end, int**& schedu
 
 		//execution of queries
 		SqlCommand^ countCommand = gcnew SqlCommand(countQuery, sqlConn);
-		int rowCount = Convert::ToInt32(countCommand->ExecuteScalar());	//number of rows
-
-		all_routes = new int[rowCount];
-		start = new string[rowCount];
-		end = new string[rowCount];
-		schedules = new int* [rowCount];	//will contain available schedules for each route
+		rowCount = Convert::ToInt32(countCommand->ExecuteScalar());	//number of rows
+		a = new dataRetriever[rowCount];
 
 		SqlCommand^ command = gcnew SqlCommand(selectQuery, sqlConn);
 		SqlDataReader^ reader = command->ExecuteReader();
-		while (reader->Read())
+		while (reader->Read())	//just like while(fin >> whatever) for file handling
 		{
 			//reading
 			int value = Convert::ToInt32(reader["availability"]);
@@ -44,24 +43,23 @@ int Admin::GetData(int*& all_routes, string*& start, string*& end, int**& schedu
 			Marshal::FreeHGlobal(IntPtr((void*)startChars));
 			Marshal::FreeHGlobal(IntPtr((void*)endChars));
 
-			//getting the data
-			all_routes[i] = value;
-			start[i] = startStr;
-			end[i] = endStr;
+			//setting the data
+			a[i].dataSetter(value, startStr, endStr);
 			i++;
 		}
 		reader->Close();
-		sqlConn->Close();		
-
+		sqlConn->Close();
+		return rowCount;
 	}
-	catch(Exception^ e)
+	catch (Exception^ e)
 	{
 		MessageBox::Show("Failed to connect to the database" + e->Message, "Database Connection Error", MessageBoxButtons::OK);
+		return rowCount;
 	}
-	return i;
 }
 
-void Admin::ChangeRouteAvailability(int* all_routes)
+
+void Admin::ChangeRouteAvailability(dataRetriever* all_routes)
 {
 	try
 	{
@@ -84,17 +82,18 @@ void Admin::ChangeRouteAvailability(int* all_routes)
 			SqlCommand^ command = gcnew SqlCommand(updateQuery, sqlConn);
 
 			//putting on the database
-			command->Parameters->AddWithValue("@Availability", all_routes[i]);
+			command->Parameters->AddWithValue("@Availability", all_routes[i].availabilityGetter());
 			command->Parameters->AddWithValue("@ID", i + 1);
 
 			//Execute the update query
 			command->ExecuteNonQuery();
 		}
-			MessageBox::Show("Availability updated successfully", "Update Success", MessageBoxButtons::OK);
-			sqlConn->Close();
+		MessageBox::Show("Availability updated successfully", "Update Success", MessageBoxButtons::OK);
+		sqlConn->Close();
 	}
 	catch (Exception^ e)
 	{
 		MessageBox::Show("Failed to update availability: " + e->Message, "Update Error", MessageBoxButtons::OK);
 	}
 }
+#endif

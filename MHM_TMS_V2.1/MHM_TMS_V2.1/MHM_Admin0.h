@@ -1,5 +1,11 @@
-#include"DataStorers.h"
-//#include"MHM_Functions.h"
+#ifndef Admin_H
+#define Admin_H
+
+#include"MHM_Functions.h"
+
+dataRetriever* a;
+Admin admin;
+
 namespace MHMTMSV21
 {
 
@@ -14,23 +20,23 @@ namespace MHMTMSV21
 			//-------------------------------------INITIALIZE AND EARLY STUFF ETC----------------------------------
 			InitializeComponent();
 			routes->DrawMode = System::Windows::Forms::DrawMode::OwnerDrawFixed;
-			//routes->DrawItem += gcnew System::Windows::Forms::DrawItemEventHandler(this, &MHM_Admin0::routes_DrawItem);
 
+			//conecting to the database and getting the data
+			int rowCount = admin.GetData(a);
 
-			//RouteListBox Data
+			//RouteListBox Data/dynamically displaying the database's info
 			int i = 0;
-			while (i < number_of_routes)
+			while (i < rowCount)
 			{
-				int checkboxState = all_routes[i];
-				size_t totalLength = strlen(Start[0].c_str()) + strlen(" to ") + strlen(End[0].c_str()) + 1; // +1 for null terminator
+				int checkboxState = a[i].availabilityGetter();
 
-				String^ itemText = gcnew String((Start[i] + " to " + End[i]).c_str());
+				String^ itemText = gcnew String((a[i].startGetter() + " to " + a[i].endGetter()).c_str());
 
 				// Adds option to routesbox
 				routes->Items->Add(itemText);
 
 				//Sets the checked state based on availability from the database
-				routes->SetItemChecked(routes->Items->Count - 1, checkboxState == 1);
+				routes->SetItemChecked(routes->Items->Count - 1, checkboxState);
 				i++;
 			}
 		}
@@ -39,29 +45,24 @@ namespace MHMTMSV21
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
+		//----------------------------------Destructor/Delete all pointers etc.-----------------------------------
 		~MHM_Admin0()
 		{
 			if (components)
 			{
+				delete a;
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ routesButton;
 
+	//-----------------------------All buttons/components on the form declared------------------------------------
+	private: System::Windows::Forms::Button^ routesButton;
 	private: System::Windows::Forms::CheckedListBox^ routes;
 	private: System::Windows::Forms::Button^ Continue1;
 	private: System::Windows::Forms::PictureBox^ RouteListBox;
 	private: System::Windows::Forms::Button^ schedulesButton;
 	private: System::Windows::Forms::PictureBox^ schedulesBox;
 	private: System::Windows::Forms::Button^ Continue2;
-
-
-
-
-
-
-
-
 
 
 
@@ -224,7 +225,7 @@ namespace MHMTMSV21
 
 		}
 #pragma endregion
-	//------------------------ROUTES BUTTON CLICKED----------------------------------------------------
+		//------------------------ROUTES BUTTON CLICKED----------------------------------------------------
 	private: System::Void routesButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->Continue1->Visible = true;
@@ -235,13 +236,13 @@ namespace MHMTMSV21
 		this->RouteListBox->Visible = true;
 	}
 
-	//------------------------ROUTES CHECK LIST BOX BUTTON CLICKED--------------------------------------
+		   //------------------------ROUTES CHECK LIST BOX BUTTON CLICKED--------------------------------------
 	private: System::Void routes_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
 	{
 
 	}
 
-	//------------------------ROUTES CONTINUE BUTTON CLICKED---------------------------------------------
+		   //------------------------ROUTES CONTINUE BUTTON CLICKED---------------------------------------------
 	private: System::Void Continue1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->routes->Visible = false;
@@ -255,14 +256,14 @@ namespace MHMTMSV21
 		for (int i = 0; i < routes->Items->Count; i++)
 		{
 			// Determine the availability to write to the database based on checked state of routes check box list
-			int availability = (routes->GetItemChecked(i)) ? 1 : 0;
-			all_routes[i] = availability;
+			int availabile = (routes->GetItemChecked(i)) ? 1 : 0;
+			a[i].availabilitySetter(availabile);
 		}
 		//implement the updated data in the database
-		Admin::ChangeRouteAvailability(all_routes);
+		admin.ChangeRouteAvailability(a);
 	}
 
-	//-------------------------------SCHEDULES BUTTON CLICKED----------------------------------------------
+		   //-------------------------------SCHEDULES BUTTON CLICKED----------------------------------------------
 	private: System::Void schedulesButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\BlurClearBG.png");
@@ -272,7 +273,7 @@ namespace MHMTMSV21
 		this->schedulesBox->Visible = true;
 	}
 
-	//----------------------------SCHEDULES CONTINUE BUTTON CLICKED-------------------------------------------
+		   //----------------------------SCHEDULES CONTINUE BUTTON CLICKED-------------------------------------------
 	private: System::Void Continue2_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\AdminBG.png");
@@ -285,5 +286,6 @@ namespace MHMTMSV21
 	{
 
 	}
-};
+	};
 }
+#endif

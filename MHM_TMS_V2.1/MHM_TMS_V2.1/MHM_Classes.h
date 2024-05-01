@@ -1,9 +1,12 @@
+#ifndef Classes_H
+#define Classes_H
+
 #pragma once
 #include<iostream>
-#include"raylib.h"
 #include<fstream>
 #include<string>
 #include<cstring>
+#include"MHM_Admin0.h"
 
 using namespace std;
 using namespace System;
@@ -20,6 +23,40 @@ class Accounts
 	//Assume blah blah
 };
 
+class dataRetriever
+{
+	int availability;
+	string start;
+	string end;
+public:
+	void dataSetter(int x, string y, string z)
+	{
+		availability = x;
+		start = y;
+		end = z;
+	}
+
+	void availabilitySetter(int x)
+	{
+		availability = x;
+	}
+
+	int availabilityGetter()
+	{
+		return availability;
+	}
+
+	string startGetter()
+	{
+		return start;
+	}
+
+	string endGetter()
+	{
+		return end;
+	}
+};
+
 class Admin : protected Accounts
 {
 private:
@@ -28,23 +65,13 @@ private:
 	int PriceOfEconomicSeat;
 	int PriceOfBusinessSeat;
 public:
-	/*static string* Start, * End;
-	static int* all_routes, ** Schedules, number_of_routes;*/
-	
+
 	void SetAvailabilityOfTrain();
 	void SetAvailableSchedule();
 	void SetFare();
-	static int GetData(int*& all_routes, string*& start, string*& end, int**& schedules);
-	static void ChangeRouteAvailability(int* all_routes);
+	int GetData(dataRetriever * &a);
+	void ChangeRouteAvailability(dataRetriever* all_routes);
 	void viewFeedback();
-
-	//Admin()
-	//{
-	//	//getting all the data from the database
-	//	number_of_routes = GetData(all_routes, Start, End, Schedules);
-	//	//as database is involved, parameterized constructor doesnt make sense
-	//}
 };
 
-//int Admin::number_of_routes = 0, Admin::*all_routes = nullptr, Admin::**Schedules=nullptr;
-//string Admin::* Start = nullptr, Admin::* End = nullptr;
+#endif 
