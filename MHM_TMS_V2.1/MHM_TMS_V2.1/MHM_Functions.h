@@ -57,6 +57,7 @@ int Admin::GetData(dataRetriever * &a, Admin &admin)
 
 		//schedules
 		int* ptr = new int[24];
+		i = 0;
 		SqlDataReader^ readerSchedule = commandSchedule->ExecuteReader();
 		while (readerSchedule->Read())	//just like while(fin >> whatever) for file handling
 		{
@@ -94,7 +95,6 @@ int Admin::GetData(dataRetriever * &a, Admin &admin)
 		return rowCount;
 	}
 }
-
 
 void Admin::ChangeRouteAvailability(dataRetriever* all_routes)
 {
@@ -182,6 +182,123 @@ void Admin::SetFare(String^ text1, String^ text2, String^ text3, String^ text4, 
 	}
 
 
+}
+
+int Admin::viewFeedback(dataRetriever * &a)
+{
+	int i = 0;
+	try
+	{
+		//connecting
+		String^ connString = "Data Source=DESKTOP-600TIJ4\\SQLEXPRESS;Initial Catalog=TMS;Integrated Security=True";
+		SqlConnection^ sqlConn = gcnew SqlConnection(connString);
+
+		sqlConn->Open();
+
+		//queries
+		String^ countQuery = "SELECT COUNT(*) AS [FeedbackCount] FROM userFb;"; //getting total feedbacks from database
+		String^ readFeedbackQuery = "SELECT * FROM userFb;";
+
+		//Execute queries
+		SqlCommand^ Countcommand = gcnew SqlCommand(countQuery, sqlConn);
+		int rowCount = Convert::ToInt32(Countcommand->ExecuteScalar());	//number of rows
+
+		SqlCommand^ command = gcnew SqlCommand(readFeedbackQuery, sqlConn);
+		SqlDataReader^ Reader = command->ExecuteReader();
+		while (Reader->Read())
+		{
+			a[i].FeedbackSetter(" ", " ", " ");
+
+			//conversion where necessary
+			String^ FeedbackValue = Reader["feedback"]->ToString();
+			String^ seatNoValue = Reader["seatNo"]->ToString();
+			String^ RatingValue = Reader["rating"]->ToString();
+
+			const char* FeedbackChars = (const char*)(Marshal::StringToHGlobalAnsi(FeedbackValue)).ToPointer();
+			const char* seatNoChars = (const char*)(Marshal::StringToHGlobalAnsi(seatNoValue)).ToPointer();
+			const char* RatingChars = (const char*)(Marshal::StringToHGlobalAnsi(RatingValue)).ToPointer();
+			string FeedbackStr(FeedbackChars);
+			string seatNoStr(seatNoChars);
+			string RatingStr(RatingChars);
+
+			Marshal::FreeHGlobal(IntPtr((void*)FeedbackChars));
+			Marshal::FreeHGlobal(IntPtr((void*)seatNoChars));
+			Marshal::FreeHGlobal(IntPtr((void*)RatingChars));
+
+			//setting the data
+			a[i].FeedbackSetter(FeedbackStr, seatNoStr, RatingStr);
+			i++;
+		}
+		Reader->Close();
+		sqlConn->Close();
+		return i;
+	}
+	catch (Exception^ e)
+	{
+		MessageBox::Show("Failed to read feedback: " + e->Message, "Update Error", MessageBoxButtons::OK);
+		return i;
+	}
+}
+
+void Admin::SetAvailableSchedule(dataRetriever*a)
+{
+	try
+	{
+		//connecting
+		String^ connString = "Data Source=DESKTOP-600TIJ4\\SQLEXPRESS;Initial Catalog=TMS;Integrated Security=True";
+		SqlConnection^ sqlConn = gcnew SqlConnection(connString);
+
+		//queries
+		String^ countQuery = "SELECT COUNT(*) AS [RowCount] FROM schedules;"; //getting total rows of database
+
+		sqlConn->Open();
+		//execution of queries
+		SqlCommand^ countCommand = gcnew SqlCommand(countQuery, sqlConn);
+		int rowCount = Convert::ToInt32(countCommand->ExecuteScalar());	//number of rows
+
+		for (int i = 0; i < rowCount; i++)
+		{
+			//update query
+			String^ updateQuery = "UPDATE schedules SET [1:00] = @a, [2:00] = @b, [3:00] = @c, [4:00] = @d, [5:00] = @e, [6:00] = @f, [7:00] = @g, [8:00] = @h, [9:00] = @i, [10:00] = @j, [11:00] = @k, [12:00] = @l, [13:00] = @m, [14:00] = @n, [15:00] = @o, [16:00] = @p, [17:00] = @q, [18:00] = @r, [19:00] = @s, [20:00] = @t, [21:00] = @u, [22:00] = @v, [23:00] = @w, [24:00] = @x WHERE id = @ID;";
+			SqlCommand^ command = gcnew SqlCommand(updateQuery, sqlConn);
+
+			//putting on the database
+			command->Parameters->AddWithValue("@a", a[i].scheduleGetter()[0]);
+			command->Parameters->AddWithValue("@b", a[i].scheduleGetter()[1]);
+			command->Parameters->AddWithValue("@c", a[i].scheduleGetter()[2]);
+			command->Parameters->AddWithValue("@d", a[i].scheduleGetter()[3]);
+			command->Parameters->AddWithValue("@e", a[i].scheduleGetter()[4]);
+			command->Parameters->AddWithValue("@f", a[i].scheduleGetter()[5]);
+			command->Parameters->AddWithValue("@g", a[i].scheduleGetter()[6]);
+			command->Parameters->AddWithValue("@h", a[i].scheduleGetter()[7]);
+			command->Parameters->AddWithValue("@i", a[i].scheduleGetter()[8]);
+			command->Parameters->AddWithValue("@j", a[i].scheduleGetter()[9]);
+			command->Parameters->AddWithValue("@k", a[i].scheduleGetter()[10]);
+			command->Parameters->AddWithValue("@l", a[i].scheduleGetter()[11]);
+			command->Parameters->AddWithValue("@m", a[i].scheduleGetter()[12]);
+			command->Parameters->AddWithValue("@n", a[i].scheduleGetter()[13]);
+			command->Parameters->AddWithValue("@o", a[i].scheduleGetter()[14]);
+			command->Parameters->AddWithValue("@p", a[i].scheduleGetter()[15]);
+			command->Parameters->AddWithValue("@q", a[i].scheduleGetter()[16]);
+			command->Parameters->AddWithValue("@r", a[i].scheduleGetter()[17]);
+			command->Parameters->AddWithValue("@s", a[i].scheduleGetter()[18]);
+			command->Parameters->AddWithValue("@t", a[i].scheduleGetter()[19]);
+			command->Parameters->AddWithValue("@u", a[i].scheduleGetter()[20]);
+			command->Parameters->AddWithValue("@v", a[i].scheduleGetter()[21]);
+			command->Parameters->AddWithValue("@w", a[i].scheduleGetter()[22]);
+			command->Parameters->AddWithValue("@x", a[i].scheduleGetter()[23]);
+			command->Parameters->AddWithValue("@ID", i + 1);
+
+			//Execute the update query
+			command->ExecuteNonQuery();
+		}
+		MessageBox::Show("Schedule updated successfully", "Update Success", MessageBoxButtons::OK);
+		sqlConn->Close();
+	}
+	catch (Exception^ e)
+	{
+		MessageBox::Show("Failed to update Schedule: " + e->Message, "Update Error", MessageBoxButtons::OK);
+	}
 }
 
 #endif

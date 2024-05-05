@@ -12,6 +12,7 @@ using namespace std;
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
+using namespace System::Collections::Generic;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
@@ -29,7 +30,11 @@ class dataRetriever
 	string start;
 	string end;
 	int* schedule;
+	string Feedback;
+	string seatNo;
+	string Ratings;
 public:
+
 	void dataSetter(int x, string y, string z)
 	{
 		availability = x;
@@ -44,11 +49,18 @@ public:
 
 	void scheduleSetter(int*ptr)
 	{
-		schedule = new int[24];
+		this->schedule = new int[24];
 		for (int i = 0; i < 24; i++)
 		{
-			schedule[i] = ptr[i];
+			this->schedule[i] = ptr[i];
 		}
+	}
+
+	void FeedbackSetter(string x, string y, string z)
+	{
+		Feedback = x;
+		seatNo = y;
+		Ratings = z;
 	}
 
 	int availabilityGetter()
@@ -66,9 +78,24 @@ public:
 		return end;
 	}
 
+	string FeedbackGetter()
+	{
+		return Feedback;
+	}
+
+	string FeedbackSeatNoGetter()
+	{
+		return seatNo;
+	}
+
+	string RatingsGetter()
+	{
+		return Ratings;
+	}
+
 	int* scheduleGetter()
 	{
-		return schedule;
+		return this->schedule;
 	}
 };
 
@@ -109,11 +136,11 @@ public:
 	}
 
 	void SetAvailabilityOfTrain();
-	void SetAvailableSchedule();
+	void SetAvailableSchedule(dataRetriever* a);
 	void SetFare(String^ text1, String^ text2, String^ text3, String^ text4, Admin& admin);
 	int GetData(dataRetriever * &a, Admin &admin);
 	void ChangeRouteAvailability(dataRetriever* all_routes);
-	void viewFeedback();
+	int viewFeedback(dataRetriever * &a);
 };
 
 #endif 

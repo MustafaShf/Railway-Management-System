@@ -5,6 +5,9 @@
 
 dataRetriever* a;
 Admin admin;
+int rowCount = 0;
+int feedbacks = 0;
+int index = 0;
 
 namespace MHMTMSV21
 {
@@ -22,7 +25,8 @@ namespace MHMTMSV21
 			routes->DrawMode = System::Windows::Forms::DrawMode::OwnerDrawFixed;
 
 			//conecting to the database and getting the data
-			int rowCount = admin.GetData(a, admin);
+			rowCount = admin.GetData(a, admin);
+			feedbacks = admin.viewFeedback(a);
 
 			//RouteListBox Data/dynamically displaying the database's info
 			int i = 0;
@@ -38,6 +42,59 @@ namespace MHMTMSV21
 				//Sets the checked state based on availability from the database
 				routes->SetItemChecked(routes->Items->Count - 1, checkboxState);
 				i++;
+			}
+
+			//Schedule routes/ makes as many buttons as there are roots, then makes different events for each button
+			for (i = 0; i < rowCount; i++)
+			{
+				System::Windows::Forms::Button^ button = gcnew System::Windows::Forms::Button();
+				button->Text = gcnew String((a[i].startGetter() + " to " + a[i].endGetter()).c_str());
+				button->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(77)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
+					static_cast<System::Int32>(static_cast<System::Byte>(207)));
+				button->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+				button->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+				button->Size = System::Drawing::Size(178, 44);
+				button->Name = "ScheduleRoute"+ i;
+
+				button->Click += gcnew System::EventHandler(this, &MHM_Admin0::Button_Click); // Attach event handler
+				ScheduleRoutesBox->Controls->Add(button); // Add button to the FlowLayoutPanel
+			}
+		}
+
+		//------------------------------------A	BUTTON ON THE SCHEDULE ROUTES IS CLICKED------------------------------
+		void Button_Click(System::Object^ sender, System::EventArgs^ e)
+		{
+			System::Windows::Forms::Button^ clickedButton = dynamic_cast<System::Windows::Forms::Button^>(sender);
+			if (clickedButton != nullptr)
+			{
+				// Perform actions based on which button was clicked
+				System::String^ buttonName = clickedButton->Name;
+				for (int i = 0; i < rowCount; i++)
+				{
+					if (buttonName == "ScheduleRoute"+i)	//buttons are names in order and loop is controlled through that
+					{
+						index = i;
+						int j = 0;
+						while (j < 24)
+						{
+							int checkboxState = a[i].scheduleGetter()[j];	//checks 0 or 1
+
+							String^ itemText = gcnew String(j + 1 + ":00");
+
+							// Adds option to Hours checkbox
+							Hours->Items->Add(itemText);
+
+							//Sets the checked state based on schedule from the database
+							Hours->SetItemChecked(Hours->Items->Count - 1, checkboxState);
+							j++;
+						}
+						this->ScheduleListContinue->Visible = true;
+						this->Hours->Visible = true;
+						this->Continue2->Visible = false;
+					}
+				}
+
 			}
 		}
 
@@ -82,6 +139,32 @@ namespace MHMTMSV21
 	private: System::Windows::Forms::TextBox^ textBox8;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Button^ ReadFeedback;
+	private: System::Windows::Forms::Button^ Continue4;
+	private: System::Windows::Forms::PictureBox^ FeedbackBG;
+	private: System::Windows::Forms::Label^ FBseatNoLabel;
+	private: System::Windows::Forms::Label^ FeedbackLabel;
+	private: System::Windows::Forms::Label^ RatingLabel;
+	private: System::Windows::Forms::TextBox^ FBSeatNo;
+	private: System::Windows::Forms::TextBox^ Feedback;
+	private: System::Windows::Forms::TextBox^ Rating;
+	private: System::Windows::Forms::Button^ NextFeedback;
+
+
+
+
+
+
+
+
+
+
+private: System::Windows::Forms::Button^ ScheduleListContinue;
+	private: System::Windows::Forms::FlowLayoutPanel^ ScheduleRoutesBox;
+private: System::Windows::Forms::CheckedListBox^ Hours;
+
+
+
 
 
 
@@ -135,9 +218,24 @@ namespace MHMTMSV21
 			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->ReadFeedback = (gcnew System::Windows::Forms::Button());
+			this->Continue4 = (gcnew System::Windows::Forms::Button());
+			this->FeedbackBG = (gcnew System::Windows::Forms::PictureBox());
+			this->FBseatNoLabel = (gcnew System::Windows::Forms::Label());
+			this->FeedbackLabel = (gcnew System::Windows::Forms::Label());
+			this->RatingLabel = (gcnew System::Windows::Forms::Label());
+			this->FBSeatNo = (gcnew System::Windows::Forms::TextBox());
+			this->Feedback = (gcnew System::Windows::Forms::TextBox());
+			this->Rating = (gcnew System::Windows::Forms::TextBox());
+			this->NextFeedback = (gcnew System::Windows::Forms::Button());
+			this->ScheduleListContinue = (gcnew System::Windows::Forms::Button());
+			this->ScheduleRoutesBox = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->Hours = (gcnew System::Windows::Forms::CheckedListBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->RouteListBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->schedulesBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fareBG))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->FeedbackBG))->BeginInit();
+			this->ScheduleRoutesBox->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// routesButton
@@ -236,7 +334,7 @@ namespace MHMTMSV21
 			this->Continue2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->Continue2->FlatAppearance->BorderSize = 0;
 			this->Continue2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->Continue2->Location = System::Drawing::Point(759, 623);
+			this->Continue2->Location = System::Drawing::Point(772, 660);
 			this->Continue2->Name = L"Continue2";
 			this->Continue2->Size = System::Drawing::Size(324, 98);
 			this->Continue2->TabIndex = 6;
@@ -250,7 +348,7 @@ namespace MHMTMSV21
 			this->priceSetter->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->priceSetter->FlatAppearance->BorderSize = 0;
 			this->priceSetter->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->priceSetter->Location = System::Drawing::Point(530, 530);
+			this->priceSetter->Location = System::Drawing::Point(404, 530);
 			this->priceSetter->Name = L"priceSetter";
 			this->priceSetter->Size = System::Drawing::Size(452, 242);
 			this->priceSetter->TabIndex = 7;
@@ -464,6 +562,173 @@ namespace MHMTMSV21
 			this->label8->Text = L"*New Business seat price";
 			this->label8->Visible = false;
 			// 
+			// ReadFeedback
+			// 
+			this->ReadFeedback->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ReadFeedback.BackgroundImage")));
+			this->ReadFeedback->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ReadFeedback->FlatAppearance->BorderSize = 0;
+			this->ReadFeedback->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->ReadFeedback->Location = System::Drawing::Point(1010, 530);
+			this->ReadFeedback->Name = L"ReadFeedback";
+			this->ReadFeedback->Size = System::Drawing::Size(454, 242);
+			this->ReadFeedback->TabIndex = 26;
+			this->ReadFeedback->UseVisualStyleBackColor = true;
+			this->ReadFeedback->Click += gcnew System::EventHandler(this, &MHM_Admin0::ReadFeedback_Click);
+			// 
+			// Continue4
+			// 
+			this->Continue4->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Continue4.BackgroundImage")));
+			this->Continue4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->Continue4->FlatAppearance->BorderSize = 0;
+			this->Continue4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->Continue4->Location = System::Drawing::Point(789, 641);
+			this->Continue4->Name = L"Continue4";
+			this->Continue4->Size = System::Drawing::Size(324, 98);
+			this->Continue4->TabIndex = 27;
+			this->Continue4->UseVisualStyleBackColor = true;
+			this->Continue4->Visible = false;
+			this->Continue4->Click += gcnew System::EventHandler(this, &MHM_Admin0::Continue4_Click);
+			// 
+			// FeedbackBG
+			// 
+			this->FeedbackBG->BackColor = System::Drawing::Color::Transparent;
+			this->FeedbackBG->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->FeedbackBG->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"FeedbackBG.Image")));
+			this->FeedbackBG->Location = System::Drawing::Point(530, 120);
+			this->FeedbackBG->Name = L"FeedbackBG";
+			this->FeedbackBG->Size = System::Drawing::Size(806, 678);
+			this->FeedbackBG->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->FeedbackBG->TabIndex = 28;
+			this->FeedbackBG->TabStop = false;
+			this->FeedbackBG->Visible = false;
+			// 
+			// FBseatNoLabel
+			// 
+			this->FBseatNoLabel->AutoSize = true;
+			this->FBseatNoLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->FBseatNoLabel->Location = System::Drawing::Point(725, 212);
+			this->FBseatNoLabel->Name = L"FBseatNoLabel";
+			this->FBseatNoLabel->Size = System::Drawing::Size(187, 46);
+			this->FBseatNoLabel->TabIndex = 29;
+			this->FBseatNoLabel->Text = L"Seat No :";
+			this->FBseatNoLabel->Visible = false;
+			// 
+			// FeedbackLabel
+			// 
+			this->FeedbackLabel->AutoSize = true;
+			this->FeedbackLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->FeedbackLabel->Location = System::Drawing::Point(592, 275);
+			this->FeedbackLabel->Name = L"FeedbackLabel";
+			this->FeedbackLabel->Size = System::Drawing::Size(206, 46);
+			this->FeedbackLabel->TabIndex = 30;
+			this->FeedbackLabel->Text = L"Feedback:";
+			this->FeedbackLabel->Visible = false;
+			// 
+			// RatingLabel
+			// 
+			this->RatingLabel->AutoSize = true;
+			this->RatingLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->RatingLabel->Location = System::Drawing::Point(766, 585);
+			this->RatingLabel->Name = L"RatingLabel";
+			this->RatingLabel->Size = System::Drawing::Size(157, 46);
+			this->RatingLabel->TabIndex = 31;
+			this->RatingLabel->Text = L"Rating :";
+			this->RatingLabel->Visible = false;
+			// 
+			// FBSeatNo
+			// 
+			this->FBSeatNo->Enabled = false;
+			this->FBSeatNo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->FBSeatNo->Location = System::Drawing::Point(941, 205);
+			this->FBSeatNo->Name = L"FBSeatNo";
+			this->FBSeatNo->Size = System::Drawing::Size(187, 53);
+			this->FBSeatNo->TabIndex = 32;
+			this->FBSeatNo->Visible = false;
+			// 
+			// Feedback
+			// 
+			this->Feedback->Enabled = false;
+			this->Feedback->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->Feedback->Location = System::Drawing::Point(600, 323);
+			this->Feedback->Multiline = true;
+			this->Feedback->Name = L"Feedback";
+			this->Feedback->Size = System::Drawing::Size(662, 188);
+			this->Feedback->TabIndex = 33;
+			this->Feedback->Visible = false;
+			// 
+			// Rating
+			// 
+			this->Rating->Enabled = false;
+			this->Rating->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->Rating->Location = System::Drawing::Point(941, 582);
+			this->Rating->Name = L"Rating";
+			this->Rating->Size = System::Drawing::Size(187, 53);
+			this->Rating->TabIndex = 34;
+			this->Rating->Visible = false;
+			// 
+			// NextFeedback
+			// 
+			this->NextFeedback->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(77)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
+				static_cast<System::Int32>(static_cast<System::Byte>(207)));
+			this->NextFeedback->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->NextFeedback->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->NextFeedback->Location = System::Drawing::Point(1184, 157);
+			this->NextFeedback->Name = L"NextFeedback";
+			this->NextFeedback->Size = System::Drawing::Size(78, 44);
+			this->NextFeedback->TabIndex = 35;
+			this->NextFeedback->Text = L"Next";
+			this->NextFeedback->UseVisualStyleBackColor = false;
+			this->NextFeedback->Visible = false;
+			this->NextFeedback->Click += gcnew System::EventHandler(this, &MHM_Admin0::NextFeedback_Click);
+			// 
+			// ScheduleListContinue
+			// 
+			this->ScheduleListContinue->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(77)),
+				static_cast<System::Int32>(static_cast<System::Byte>(83)), static_cast<System::Int32>(static_cast<System::Byte>(207)));
+			this->ScheduleListContinue->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ScheduleListContinue->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->ScheduleListContinue->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->ScheduleListContinue->Location = System::Drawing::Point(759, 803);
+			this->ScheduleListContinue->Name = L"ScheduleListContinue";
+			this->ScheduleListContinue->Size = System::Drawing::Size(324, 98);
+			this->ScheduleListContinue->TabIndex = 44;
+			this->ScheduleListContinue->Text = L"Update Schedule";
+			this->ScheduleListContinue->UseVisualStyleBackColor = false;
+			this->ScheduleListContinue->Visible = false;
+			this->ScheduleListContinue->Click += gcnew System::EventHandler(this, &MHM_Admin0::ScheduleListContinue_Click);
+			// 
+			// ScheduleRoutesBox
+			// 
+			this->ScheduleRoutesBox->Controls->Add(this->Hours);
+			this->ScheduleRoutesBox->FlowDirection = System::Windows::Forms::FlowDirection::TopDown;
+			this->ScheduleRoutesBox->Location = System::Drawing::Point(633, 250);
+			this->ScheduleRoutesBox->Name = L"ScheduleRoutesBox";
+			this->ScheduleRoutesBox->Size = System::Drawing::Size(629, 404);
+			this->ScheduleRoutesBox->TabIndex = 45;
+			this->ScheduleRoutesBox->Visible = false;
+			// 
+			// Hours
+			// 
+			this->Hours->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(177)), static_cast<System::Int32>(static_cast<System::Byte>(176)),
+				static_cast<System::Int32>(static_cast<System::Byte>(216)));
+			this->Hours->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->Hours->CheckOnClick = true;
+			this->Hours->FormattingEnabled = true;
+			this->Hours->Location = System::Drawing::Point(3, 3);
+			this->Hours->Name = L"Hours";
+			this->Hours->ScrollAlwaysVisible = true;
+			this->Hours->Size = System::Drawing::Size(626, 391);
+			this->Hours->TabIndex = 46;
+			this->Hours->Visible = false;
+			// 
 			// MHM_Admin0
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
@@ -473,8 +738,19 @@ namespace MHMTMSV21
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1924, 1050);
+			this->Controls->Add(this->ScheduleListContinue);
+			this->Controls->Add(this->ScheduleRoutesBox);
 			this->Controls->Add(this->Continue2);
 			this->Controls->Add(this->schedulesBox);
+			this->Controls->Add(this->NextFeedback);
+			this->Controls->Add(this->Continue4);
+			this->Controls->Add(this->Rating);
+			this->Controls->Add(this->RatingLabel);
+			this->Controls->Add(this->Feedback);
+			this->Controls->Add(this->FeedbackLabel);
+			this->Controls->Add(this->FBSeatNo);
+			this->Controls->Add(this->FBseatNoLabel);
+			this->Controls->Add(this->FeedbackBG);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->textBox8);
@@ -499,6 +775,7 @@ namespace MHMTMSV21
 			this->Controls->Add(this->RouteListBox);
 			this->Controls->Add(this->routesButton);
 			this->Controls->Add(this->schedulesButton);
+			this->Controls->Add(this->ReadFeedback);
 			this->DoubleBuffered = true;
 			this->Name = L"MHM_Admin0";
 			this->Text = L"MHM_Admin0";
@@ -506,6 +783,8 @@ namespace MHMTMSV21
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->RouteListBox))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->schedulesBox))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fareBG))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->FeedbackBG))->EndInit();
+			this->ScheduleRoutesBox->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -519,6 +798,7 @@ namespace MHMTMSV21
 		this->routesButton->Visible = false;
 		this->schedulesButton->Visible = false;
 		this->priceSetter->Visible = false;
+		this->ReadFeedback->Visible = false;
 		this->routes->Visible = true;
 		this->RouteListBox->Visible = true;
 	}
@@ -538,6 +818,7 @@ namespace MHMTMSV21
 		this->routesButton->Visible = true;
 		this->schedulesButton->Visible = true;
 		this->priceSetter->Visible = true;
+		this->ReadFeedback->Visible = true;
 		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\AdminBG.png");
 
 
@@ -554,12 +835,15 @@ namespace MHMTMSV21
 		   //-------------------------------SCHEDULES BUTTON CLICKED----------------------------------------------
 	private: System::Void schedulesButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		this->Continue2->Visible = true;
+		this->ScheduleRoutesBox->Visible = true;
+		this->schedulesBox->Visible = true;
 		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\BlurClearBG.png");
 		this->routesButton->Visible = false;
 		this->schedulesButton->Visible = false;
 		this->priceSetter->Visible = false;
-		this->Continue2->Visible = true;
-		this->schedulesBox->Visible = true;
+		this->ReadFeedback->Visible = false;
+
 	}
 
 		   //----------------------------SCHEDULES CONTINUE BUTTON CLICKED-------------------------------------------
@@ -571,6 +855,9 @@ namespace MHMTMSV21
 		this->routesButton->Visible = true;
 		this->schedulesButton->Visible = true;
 		this->priceSetter->Visible = true;
+		this->ReadFeedback->Visible = true;
+		this->schedulesBox->Visible = false;
+		this->ScheduleRoutesBox->Visible = false;
 	}
 		   //----------------------------PRICE SETTER BUTTON CLICKED-------------------------------------------
 	private: System::Void priceSetter_Click(System::Object^ sender, System::EventArgs^ e)
@@ -597,6 +884,7 @@ namespace MHMTMSV21
 		this->routesButton->Visible = false;
 		this->schedulesButton->Visible = false;
 		this->priceSetter->Visible = false;
+		this->ReadFeedback->Visible = false;
 		
 		this->textBox1->Text = System::Convert::ToString(admin.routePriceGetter());
 		this->textBox5->Text = System::Convert::ToString(admin.ExecutiveGetter());
@@ -653,6 +941,7 @@ namespace MHMTMSV21
 			this->routesButton->Visible = true;
 			this->schedulesButton->Visible = true;
 			this->priceSetter->Visible = true;
+			this->ReadFeedback->Visible = true;
 			this->fareBG->Visible = false;
 			this->label1->Visible = false;
 			this->label2->Visible = false;
@@ -679,6 +968,77 @@ namespace MHMTMSV21
 			textBox6->Text = "";
 			textBox8->Text = "";
 		}
+	}
+
+		   //----------------------------FEEDBACK READER BUTTON CLICKED------------------------------------
+	private: System::Void ReadFeedback_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->Continue4->Visible = true;
+		this->FBseatNoLabel->Visible = true;
+		this->FBSeatNo->Visible = true;
+		this->FeedbackLabel->Visible = true;
+		this->Feedback->Visible = true;
+		this->RatingLabel->Visible = true;
+		this->Rating->Visible = true;
+		this->NextFeedback->Visible = true;
+		this->FeedbackBG->Visible = true;
+		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\BlurClearBG.png");
+		this->routesButton->Visible = false;
+		this->schedulesButton->Visible = false;
+		this->priceSetter->Visible = false;
+		this->ReadFeedback->Visible = false;
+
+	}
+
+	int p = 0;
+		   //----------------------------FEEDBACK READER CONTINUE BUTTON CLICKED----------------------------
+	private: System::Void Continue4_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\AdminBG.png");
+		this->routesButton->Visible = true;
+		this->schedulesButton->Visible = true;
+		this->priceSetter->Visible = true;
+		this->ReadFeedback->Visible = true;
+		this->FeedbackBG->Visible = false;
+		this->Continue4->Visible = false;
+		this->FBseatNoLabel->Visible = false;
+		this->FBSeatNo->Visible = false;
+		this->FeedbackLabel->Visible = false;
+		this->Feedback->Visible = false;
+		this->RatingLabel->Visible = false;
+		this->Rating->Visible = false;
+		this->NextFeedback->Visible = false;
+		p = 0;
+	}
+		   //----------------------------FEEDBACK READER NEXT BUTTON CLICKED-----------------------------
+	private: System::Void NextFeedback_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (p < feedbacks)
+		{
+			this->FBSeatNo->Text = gcnew System::String(a[p].FeedbackSeatNoGetter().c_str());
+			this->Feedback->Text = gcnew System::String(a[p].FeedbackGetter().c_str());
+			this->Rating->Text = gcnew System::String(a[p].RatingsGetter().c_str());
+			p++;
+		}
+	}
+		   //----------------------------UPDATE SCHEDULE BUTTON CLICKED--------------------------------
+	private: System::Void ScheduleListContinue_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		int* hourBool = new int[24];
+		for (int i = 0; i < Hours->Items->Count; i++)
+		{
+			//Get the updated data from the check box into array
+			hourBool[i] = (Hours->GetItemChecked(i)) ? 1 : 0;
+		}
+		a[index].scheduleSetter(hourBool);
+
+		//implement the updated data in the database
+		admin.SetAvailableSchedule(a);
+
+		Hours->Items->Clear();	//clears the checkbox, so data from another button can be placed in it
+		this->Continue2->Visible = true;
+		this->Hours->Visible = false;
+		this->ScheduleListContinue->Visible = false;
 	}
 };
 }

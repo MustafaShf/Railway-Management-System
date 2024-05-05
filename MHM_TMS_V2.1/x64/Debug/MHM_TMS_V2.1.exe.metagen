@@ -21,3 +21,5 @@ Assembly Interop.WMPLib.1.0, Version=1.0.*, Culture=Invariant Language (Invarian
 Class MHMTMSV21.MHM_Admin0: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Button_Click(Object, EventArgs): PrivateScope, Public, HideBySig
