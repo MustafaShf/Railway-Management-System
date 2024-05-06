@@ -8,6 +8,7 @@ Admin admin;
 int rowCount = 0;
 int feedbacks = 0;
 int index = 0;
+int index1 = 0;
 
 namespace MHMTMSV21
 {
@@ -60,6 +61,23 @@ namespace MHMTMSV21
 				button->Click += gcnew System::EventHandler(this, &MHM_Admin0::Button_Click); // Attach event handler
 				ScheduleRoutesBox->Controls->Add(button); // Add button to the FlowLayoutPanel
 			}
+
+			//Trains on routes/ makes as many buttons as there are roots, then makes different events for each button
+			for (i = 0; i < rowCount; i++)
+			{
+				System::Windows::Forms::Button^ button1 = gcnew System::Windows::Forms::Button();
+				button1->Text = gcnew String((a[i].startGetter() + " to " + a[i].endGetter()).c_str());
+				button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(77)), static_cast<System::Int32>(static_cast<System::Byte>(83)),
+					static_cast<System::Int32>(static_cast<System::Byte>(207)));
+				button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+				button1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+				button1->Size = System::Drawing::Size(178, 44);
+				button1->Name = "TrainRoute" + i;
+
+				button1->Click += gcnew System::EventHandler(this, &MHM_Admin0::TrainRoute_Button_Click); // Attach event handler
+				TrainsBox->Controls->Add(button1); // Add button to the FlowLayoutPanel
+			}
 		}
 
 		//------------------------------------A	BUTTON ON THE SCHEDULE ROUTES IS CLICKED------------------------------
@@ -92,6 +110,54 @@ namespace MHMTMSV21
 						this->ScheduleListContinue->Visible = true;
 						this->Hours->Visible = true;
 						this->Continue2->Visible = false;
+					}
+				}
+
+			}
+		}
+
+		//------------------------------------A	BUTTON ON THE TRAIN ROUTES IS CLICKED------------------------------
+		void TrainRoute_Button_Click(System::Object^ sender, System::EventArgs^ e)
+		{
+			System::Windows::Forms::Button^ clickedButton = dynamic_cast<System::Windows::Forms::Button^>(sender);
+			if (clickedButton != nullptr)
+			{
+				// Perform actions based on which button was clicked
+				System::String^ buttonName = clickedButton->Name;
+				for (int i = 0; i < rowCount; i++)
+				{
+					if (buttonName == "TrainRoute" + i)	//buttons are names in order and loop is controlled through that
+					{
+						index1 = i;
+						int j = 0;
+						while (j < 3)
+						{
+							int checkboxState = a[i].trainsGetter()[j];	//checks 0 or 1
+							String^ itemText;
+
+							if (j == 0)
+							{
+								itemText = gcnew String("Green Line");
+							}
+							else if (j == 1)
+							{
+								itemText = gcnew String("Hazara Express");
+							}
+							else if (j == 2)
+							{
+								itemText = gcnew String("Chiltan Express");
+							}
+
+							// Adds option to Hours checkbox
+							TrainsList->Items->Add(itemText);
+
+							//Sets the checked state based on schedule from the database
+							TrainsList->SetItemChecked(TrainsList->Items->Count - 1, checkboxState);
+							j++;
+						}
+						this->TrainListContinue->Visible = true;
+						this->TrainsList->Visible = true;
+						this->Continue5->Visible = false;
 					}
 				}
 
@@ -162,6 +228,21 @@ namespace MHMTMSV21
 private: System::Windows::Forms::Button^ ScheduleListContinue;
 	private: System::Windows::Forms::FlowLayoutPanel^ ScheduleRoutesBox;
 private: System::Windows::Forms::CheckedListBox^ Hours;
+private: System::Windows::Forms::PictureBox^ TrainsBG;
+
+private: System::Windows::Forms::Button^ trainsButton;
+private: System::Windows::Forms::Button^ Continue5;
+private: System::Windows::Forms::FlowLayoutPanel^ TrainsBox;
+private: System::Windows::Forms::CheckedListBox^ TrainsList;
+private: System::Windows::Forms::Button^ TrainListContinue;
+
+
+
+
+
+
+
+
 
 
 
@@ -231,11 +312,19 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 			this->ScheduleListContinue = (gcnew System::Windows::Forms::Button());
 			this->ScheduleRoutesBox = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->Hours = (gcnew System::Windows::Forms::CheckedListBox());
+			this->TrainsBG = (gcnew System::Windows::Forms::PictureBox());
+			this->trainsButton = (gcnew System::Windows::Forms::Button());
+			this->Continue5 = (gcnew System::Windows::Forms::Button());
+			this->TrainsBox = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->TrainsList = (gcnew System::Windows::Forms::CheckedListBox());
+			this->TrainListContinue = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->RouteListBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->schedulesBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fareBG))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->FeedbackBG))->BeginInit();
 			this->ScheduleRoutesBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->TrainsBG))->BeginInit();
+			this->TrainsBox->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// routesButton
@@ -721,13 +810,100 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 				static_cast<System::Int32>(static_cast<System::Byte>(216)));
 			this->Hours->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->Hours->CheckOnClick = true;
+			this->Hours->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->Hours->ForeColor = System::Drawing::Color::White;
 			this->Hours->FormattingEnabled = true;
 			this->Hours->Location = System::Drawing::Point(3, 3);
 			this->Hours->Name = L"Hours";
 			this->Hours->ScrollAlwaysVisible = true;
-			this->Hours->Size = System::Drawing::Size(626, 391);
+			this->Hours->Size = System::Drawing::Size(626, 369);
 			this->Hours->TabIndex = 46;
 			this->Hours->Visible = false;
+			// 
+			// TrainsBG
+			// 
+			this->TrainsBG->BackColor = System::Drawing::Color::Transparent;
+			this->TrainsBG->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->TrainsBG->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"TrainsBG.Image")));
+			this->TrainsBG->Location = System::Drawing::Point(530, 119);
+			this->TrainsBG->Name = L"TrainsBG";
+			this->TrainsBG->Size = System::Drawing::Size(806, 678);
+			this->TrainsBG->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->TrainsBG->TabIndex = 46;
+			this->TrainsBG->TabStop = false;
+			this->TrainsBG->Visible = false;
+			// 
+			// trainsButton
+			// 
+			this->trainsButton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"trainsButton.BackgroundImage")));
+			this->trainsButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->trainsButton->FlatAppearance->BorderSize = 0;
+			this->trainsButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->trainsButton->Location = System::Drawing::Point(1293, 228);
+			this->trainsButton->Name = L"trainsButton";
+			this->trainsButton->Size = System::Drawing::Size(454, 242);
+			this->trainsButton->TabIndex = 47;
+			this->trainsButton->UseVisualStyleBackColor = true;
+			this->trainsButton->Click += gcnew System::EventHandler(this, &MHM_Admin0::trainsButton_Click);
+			// 
+			// Continue5
+			// 
+			this->Continue5->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Continue5.BackgroundImage")));
+			this->Continue5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->Continue5->FlatAppearance->BorderSize = 0;
+			this->Continue5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->Continue5->Location = System::Drawing::Point(759, 660);
+			this->Continue5->Name = L"Continue5";
+			this->Continue5->Size = System::Drawing::Size(324, 98);
+			this->Continue5->TabIndex = 49;
+			this->Continue5->UseVisualStyleBackColor = true;
+			this->Continue5->Visible = false;
+			this->Continue5->Click += gcnew System::EventHandler(this, &MHM_Admin0::Continue5_Click);
+			// 
+			// TrainsBox
+			// 
+			this->TrainsBox->Controls->Add(this->TrainsList);
+			this->TrainsBox->FlowDirection = System::Windows::Forms::FlowDirection::TopDown;
+			this->TrainsBox->Location = System::Drawing::Point(600, 312);
+			this->TrainsBox->Name = L"TrainsBox";
+			this->TrainsBox->Size = System::Drawing::Size(662, 332);
+			this->TrainsBox->TabIndex = 50;
+			this->TrainsBox->Visible = false;
+			// 
+			// TrainsList
+			// 
+			this->TrainsList->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(177)), static_cast<System::Int32>(static_cast<System::Byte>(176)),
+				static_cast<System::Int32>(static_cast<System::Byte>(216)));
+			this->TrainsList->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->TrainsList->CheckOnClick = true;
+			this->TrainsList->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->TrainsList->ForeColor = System::Drawing::Color::White;
+			this->TrainsList->FormattingEnabled = true;
+			this->TrainsList->Location = System::Drawing::Point(3, 3);
+			this->TrainsList->Name = L"TrainsList";
+			this->TrainsList->ScrollAlwaysVisible = true;
+			this->TrainsList->Size = System::Drawing::Size(659, 328);
+			this->TrainsList->TabIndex = 51;
+			this->TrainsList->Visible = false;
+			// 
+			// TrainListContinue
+			// 
+			this->TrainListContinue->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(77)),
+				static_cast<System::Int32>(static_cast<System::Byte>(83)), static_cast<System::Int32>(static_cast<System::Byte>(207)));
+			this->TrainListContinue->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->TrainListContinue->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->TrainListContinue->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->TrainListContinue->Location = System::Drawing::Point(759, 803);
+			this->TrainListContinue->Name = L"TrainListContinue";
+			this->TrainListContinue->Size = System::Drawing::Size(324, 98);
+			this->TrainListContinue->TabIndex = 52;
+			this->TrainListContinue->Text = L"Update Trains";
+			this->TrainListContinue->UseVisualStyleBackColor = false;
+			this->TrainListContinue->Visible = false;
+			this->TrainListContinue->Click += gcnew System::EventHandler(this, &MHM_Admin0::TrainListContinue_Click);
 			// 
 			// MHM_Admin0
 			// 
@@ -738,6 +914,10 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1924, 1050);
+			this->Controls->Add(this->TrainListContinue);
+			this->Controls->Add(this->TrainsBox);
+			this->Controls->Add(this->Continue5);
+			this->Controls->Add(this->TrainsBG);
 			this->Controls->Add(this->ScheduleListContinue);
 			this->Controls->Add(this->ScheduleRoutesBox);
 			this->Controls->Add(this->Continue2);
@@ -776,6 +956,7 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 			this->Controls->Add(this->routesButton);
 			this->Controls->Add(this->schedulesButton);
 			this->Controls->Add(this->ReadFeedback);
+			this->Controls->Add(this->trainsButton);
 			this->DoubleBuffered = true;
 			this->Name = L"MHM_Admin0";
 			this->Text = L"MHM_Admin0";
@@ -785,6 +966,8 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fareBG))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->FeedbackBG))->EndInit();
 			this->ScheduleRoutesBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->TrainsBG))->EndInit();
+			this->TrainsBox->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -799,6 +982,7 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 		this->schedulesButton->Visible = false;
 		this->priceSetter->Visible = false;
 		this->ReadFeedback->Visible = false;
+		this->trainsButton->Visible = false;
 		this->routes->Visible = true;
 		this->RouteListBox->Visible = true;
 	}
@@ -819,6 +1003,7 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 		this->schedulesButton->Visible = true;
 		this->priceSetter->Visible = true;
 		this->ReadFeedback->Visible = true;
+		this->trainsButton->Visible = true;
 		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\AdminBG.png");
 
 
@@ -843,7 +1028,7 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 		this->schedulesButton->Visible = false;
 		this->priceSetter->Visible = false;
 		this->ReadFeedback->Visible = false;
-
+		this->trainsButton->Visible = false;
 	}
 
 		   //----------------------------SCHEDULES CONTINUE BUTTON CLICKED-------------------------------------------
@@ -856,6 +1041,7 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 		this->schedulesButton->Visible = true;
 		this->priceSetter->Visible = true;
 		this->ReadFeedback->Visible = true;
+		this->trainsButton->Visible = true;
 		this->schedulesBox->Visible = false;
 		this->ScheduleRoutesBox->Visible = false;
 	}
@@ -885,14 +1071,12 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 		this->schedulesButton->Visible = false;
 		this->priceSetter->Visible = false;
 		this->ReadFeedback->Visible = false;
+		this->trainsButton->Visible = false;
 		
 		this->textBox1->Text = System::Convert::ToString(admin.routePriceGetter());
 		this->textBox5->Text = System::Convert::ToString(admin.ExecutiveGetter());
 		this->textBox3->Text = System::Convert::ToString(admin.EconomicGetter());
 		this->textBox7->Text = System::Convert::ToString(admin.BusinessGetter());
-
-
-
 
 	}
 		   //----------------------------PRICE SETTER CONTINE BUTTON CLICKED------------------------------------
@@ -942,6 +1126,7 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 			this->schedulesButton->Visible = true;
 			this->priceSetter->Visible = true;
 			this->ReadFeedback->Visible = true;
+			this->trainsButton->Visible = true;
 			this->fareBG->Visible = false;
 			this->label1->Visible = false;
 			this->label2->Visible = false;
@@ -987,7 +1172,7 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 		this->schedulesButton->Visible = false;
 		this->priceSetter->Visible = false;
 		this->ReadFeedback->Visible = false;
-
+		this->trainsButton->Visible = false;
 	}
 
 	int p = 0;
@@ -999,6 +1184,7 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 		this->schedulesButton->Visible = true;
 		this->priceSetter->Visible = true;
 		this->ReadFeedback->Visible = true;
+		this->trainsButton->Visible = true;
 		this->FeedbackBG->Visible = false;
 		this->Continue4->Visible = false;
 		this->FBseatNoLabel->Visible = false;
@@ -1039,6 +1225,54 @@ private: System::Windows::Forms::CheckedListBox^ Hours;
 		this->Continue2->Visible = true;
 		this->Hours->Visible = false;
 		this->ScheduleListContinue->Visible = false;
+	}
+	
+		  //----------------------------TRAINS BUTTON CLICKED--------------------------------
+	private: System::Void trainsButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->TrainsBox->Visible = true;
+		this->Continue5->Visible = true;
+		this->TrainsBG->Visible = true;
+		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\BlurClearBG.png");
+		this->routesButton->Visible = false;
+		this->schedulesButton->Visible = false;
+		this->priceSetter->Visible = false;
+		this->ReadFeedback->Visible = false;
+		this->trainsButton->Visible = false;
+	}
+	
+	
+	private: System::Void Continue5_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->routesButton->Visible = true;
+		this->schedulesButton->Visible = true;
+		this->priceSetter->Visible = true;
+		this->ReadFeedback->Visible = true;
+		this->trainsButton->Visible = true;
+		this->TrainsBG->Visible = false;
+		this->BackgroundImage = System::Drawing::Image::FromFile("Assets\\AdminBG.png");
+		this->Continue5->Visible = false;
+		this->TrainsBox->Visible = false;
+	}
+	
+
+	private: System::Void TrainListContinue_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		int* trainBool = new int[3];
+		for (int i = 0; i < TrainsList->Items->Count; i++)
+		{
+			//Get the updated data from the check box into array
+			trainBool[i] = (TrainsList->GetItemChecked(i)) ? 1 : 0;
+		}
+		a[index1].trainsSetter(trainBool);
+
+		//implement the updated data in the database
+		admin.SetAvailabilityOfTrain(a);
+
+		TrainsList->Items->Clear();	//clears the checkbox, so data from another button can be placed in it
+		this->Continue5->Visible = true;
+		this->TrainsList->Visible = false;
+		this->TrainListContinue->Visible = false;
 	}
 };
 }

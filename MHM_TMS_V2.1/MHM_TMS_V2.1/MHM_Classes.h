@@ -33,6 +33,7 @@ class dataRetriever
 	string Feedback;
 	string seatNo;
 	string Ratings;
+	int* trains;
 public:
 
 	void dataSetter(int x, string y, string z)
@@ -61,6 +62,15 @@ public:
 		Feedback = x;
 		seatNo = y;
 		Ratings = z;
+	}
+
+	void trainsSetter(int*ptr)
+	{
+		this->trains = new int[3];
+		for (int i = 0; i < 3; i++)
+		{
+			this->trains[i] = ptr[i];
+		}
 	}
 
 	int availabilityGetter()
@@ -96,6 +106,11 @@ public:
 	int* scheduleGetter()
 	{
 		return this->schedule;
+	}
+
+	int* trainsGetter()
+	{
+		return trains;
 	}
 };
 
@@ -135,7 +150,7 @@ public:
 		return PriceOfBusinessSeat;
 	}
 
-	void SetAvailabilityOfTrain();
+	void SetAvailabilityOfTrain(dataRetriever* a);
 	void SetAvailableSchedule(dataRetriever* a);
 	void SetFare(String^ text1, String^ text2, String^ text3, String^ text4, Admin& admin);
 	int GetData(dataRetriever * &a, Admin &admin);

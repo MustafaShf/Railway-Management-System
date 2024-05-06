@@ -18,6 +18,7 @@ int Admin::GetData(dataRetriever * &a, Admin &admin)
 		String^ selectQuery = "SELECT * FROM routes;";
 		String^ scheduleQuery = "SELECT * FROM schedules;";
 		String^ fareQuery = "SELECT * FROM fares";
+		String^ trainQuery = "SELECT * FROM Trains";
 
 		sqlConn->Open();
 
@@ -29,6 +30,7 @@ int Admin::GetData(dataRetriever * &a, Admin &admin)
 		SqlCommand^ command = gcnew SqlCommand(selectQuery, sqlConn);
 		SqlCommand^ commandSchedule = gcnew SqlCommand(scheduleQuery, sqlConn);
 		SqlCommand^ commandFare = gcnew SqlCommand(fareQuery, sqlConn);
+		SqlCommand^ commandTrain = gcnew SqlCommand(trainQuery, sqlConn);
 
 		//routes
 		SqlDataReader^ reader = command->ExecuteReader();
@@ -86,7 +88,31 @@ int Admin::GetData(dataRetriever * &a, Admin &admin)
 		}
 
 		readerFare->Close();
+
+		//trains
+		int* ptr1 = new int[3];
+		i = 0;
+		SqlDataReader^ trainReader = commandTrain->ExecuteReader();
+		while (trainReader->Read())	//just like while(fin >> whatever) for file handling
+		{
+			//reading
+			for (int j = 0; j < 3; j++)
+			{
+				ptr1[j] = Convert::ToInt32(trainReader[j + 1]);
+			}
+
+			//setting the data
+			a[i].trainsSetter(ptr1);
+			i++;
+		}
+		trainReader->Close();
+
 		sqlConn->Close();
+		delete ptr;
+		delete ptr1;
+		ptr = nullptr;
+		ptr1 = nullptr;
+
 		return rowCount;
 	}
 	catch (Exception^ e)
@@ -287,6 +313,46 @@ void Admin::SetAvailableSchedule(dataRetriever*a)
 			command->Parameters->AddWithValue("@v", a[i].scheduleGetter()[21]);
 			command->Parameters->AddWithValue("@w", a[i].scheduleGetter()[22]);
 			command->Parameters->AddWithValue("@x", a[i].scheduleGetter()[23]);
+			command->Parameters->AddWithValue("@ID", i + 1);
+
+			//Execute the update query
+			command->ExecuteNonQuery();
+		}
+		MessageBox::Show("Schedule updated successfully", "Update Success", MessageBoxButtons::OK);
+		sqlConn->Close();
+	}
+	catch (Exception^ e)
+	{
+		MessageBox::Show("Failed to update Schedule: " + e->Message, "Update Error", MessageBoxButtons::OK);
+	}
+}
+
+void Admin::SetAvailabilityOfTrain(dataRetriever* a)
+{
+	try
+	{
+		//connecting
+		String^ connString = "Data Source=DESKTOP-600TIJ4\\SQLEXPRESS;Initial Catalog=TMS;Integrated Security=True";
+		SqlConnection^ sqlConn = gcnew SqlConnection(connString);
+
+		//queries
+		String^ countQuery = "SELECT COUNT(*) AS [RowCount] FROM Trains;"; //getting total rows of database
+
+		sqlConn->Open();
+		//execution of queries
+		SqlCommand^ countCommand = gcnew SqlCommand(countQuery, sqlConn);
+		int rowCount = Convert::ToInt32(countCommand->ExecuteScalar());	//number of rows
+
+		for (int i = 0; i < rowCount; i++)
+		{
+			//update query
+			String^ updateQuery = "UPDATE Trains SET [Green Line] = @gl, [Hazara Express] = @he, [Chiltan Express] = @ce WHERE id = @ID;";
+			SqlCommand^ command = gcnew SqlCommand(updateQuery, sqlConn);
+
+			//putting on the database
+			command->Parameters->AddWithValue("@gl", a[i].trainsGetter()[0]);
+			command->Parameters->AddWithValue("@he", a[i].trainsGetter()[1]);
+			command->Parameters->AddWithValue("@ce", a[i].trainsGetter()[2]);
 			command->Parameters->AddWithValue("@ID", i + 1);
 
 			//Execute the update query
