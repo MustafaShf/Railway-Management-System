@@ -94,7 +94,7 @@ class UserSelection : public Accounts
 {
 	string route;		//the route that is selected by the user
 	int schedule;		//the schedule selected by user
-	string train;		//the train selected by the user
+	int train;		//the train selected by the user
 	int no_of_Executive_seats;
 	int no_of_Economic_seats;
 	int no_of_Business_seats;
@@ -112,6 +112,11 @@ public:
 		schedule = x;
 	}
 
+	void UserTrainSetter(int x)
+	{
+		train = x;
+	}
+
 	string UserRouteGetter()
 	{
 		return route;
@@ -121,6 +126,14 @@ public:
 	{
 		return schedule;
 	}
+
+	int UserTrainGetter()
+	{
+		return train;
+	}
+
+	UserSelection(string a = "", int b=0, int c=0, int d=0, int e=0, int f=0 ) : route(a), schedule(b), train(c), no_of_Executive_seats(d), no_of_Economic_seats(e),no_of_Business_seats(f)
+	{}
 };
 
 #endif 
