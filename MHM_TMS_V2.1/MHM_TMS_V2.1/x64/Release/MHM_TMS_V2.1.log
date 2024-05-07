@@ -1,0 +1,7 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets(2992,5): warning MSB3305: Processing COM reference "WMPLib.1.0" from path "C:\WINDOWS\system32\wmp.dll". Type library importer encountered a property getter 'sessionPlaylistCount' on type 'WMPLib.IWMPNowPlayingHelperDispatch' without a valid return type.  The importer will attempt to import this property as a method instead.
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets(2992,5): warning MSB3305: Processing COM reference "WMPLib.1.0" from path "C:\WINDOWS\system32\wmp.dll". At least one of the arguments for 'IWMPGraphEventHandler.NotifyAcquireCredentials' cannot be marshaled by the runtime marshaler.  Such arguments will therefore be passed as a pointer and may require unsafe code to manipulate.
+  MHM_Admin0.cpp
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Generating Code...
+  MHM_Admin0.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  MHM_TMS_V2.1.vcxproj -> C:\Users\Muhammad Hassaan\Desktop\MHM_TMS_V2.1\x64\Release\MHM_TMS_V2.1.exe

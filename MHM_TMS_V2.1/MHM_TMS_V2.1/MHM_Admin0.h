@@ -173,7 +173,6 @@ namespace MHMTMSV21
 		{
 			if (components)
 			{
-				delete a;
 				delete components;
 			}
 		}

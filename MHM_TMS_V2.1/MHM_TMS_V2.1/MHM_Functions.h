@@ -151,7 +151,10 @@ void Admin::ChangeRouteAvailability(dataRetriever* all_routes)
 			//Execute the update query
 			command->ExecuteNonQuery();
 		}
+		SoundPlayer^ player = gcnew SoundPlayer("Assets\\paparapapa.wav");
+		player->Play();
 		MessageBox::Show("Availability updated successfully", "Update Success", MessageBoxButtons::OK);
+
 		sqlConn->Close();
 	}
 	catch (Exception^ e)
@@ -198,7 +201,8 @@ void Admin::SetFare(String^ text1, String^ text2, String^ text3, String^ text4, 
 
 		//Execute the update query
 		command->ExecuteNonQuery();
-
+		SoundPlayer^ player = gcnew SoundPlayer("Assets\\paparapapa.wav");
+		player->Play();
 		MessageBox::Show("Fare updated successfully", "Update Success", MessageBoxButtons::OK);
 		sqlConn->Close();
 	}
@@ -318,6 +322,8 @@ void Admin::SetAvailableSchedule(dataRetriever*a)
 			//Execute the update query
 			command->ExecuteNonQuery();
 		}
+		SoundPlayer^ player = gcnew SoundPlayer("Assets\\paparapapa.wav");
+		player->Play();
 		MessageBox::Show("Schedule updated successfully", "Update Success", MessageBoxButtons::OK);
 		sqlConn->Close();
 	}
@@ -358,6 +364,8 @@ void Admin::SetAvailabilityOfTrain(dataRetriever* a)
 			//Execute the update query
 			command->ExecuteNonQuery();
 		}
+		SoundPlayer^ player = gcnew SoundPlayer("Assets\\paparapapa.wav");
+		player->Play();
 		MessageBox::Show("Schedule updated successfully", "Update Success", MessageBoxButtons::OK);
 		sqlConn->Close();
 	}
