@@ -1,25 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\",
+  "WorkspaceRootPath": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
+      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_User.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
       "RelativeMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|solutionrelative:MHM_User\\MHM_User.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_User.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|solutionrelative:MHM_User\\MHM_User.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User_Functions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|solutionrelative:MHM_User\\MHM_User_Functions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\paymentSuccessFull.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
+      "RelativeMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|solutionrelative:MHM_User\\paymentSuccessFull.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User_Classes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\paymentSuccessFull.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|solutionrelative:MHM_User\\paymentSuccessFull.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\UserFeedback.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|solutionrelative:MHM_User\\UserFeedback.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_Payment.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|solutionrelative:MHM_User\\MHM_Payment.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_User_Classes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|solutionrelative:MHM_User\\MHM_User_Classes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_User.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{836B8588-CB6A-4AA4-9E57-4D13525FA8CE}|MHM_User\\MHM_User.vcxproj|solutionrelative:MHM_User\\MHM_User.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -35,66 +47,101 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "MHM_User.cpp",
-              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User.cpp",
-              "RelativeDocumentMoniker": "MHM_User\\MHM_User.cpp",
-              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User.cpp",
-              "RelativeToolTip": "MHM_User\\MHM_User.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-05-07T08:08:17.298Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MHM_User.h",
-              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User.h",
-              "RelativeDocumentMoniker": "MHM_User\\MHM_User.h",
-              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User.h",
-              "RelativeToolTip": "MHM_User\\MHM_User.h",
-              "ViewState": "AQIAAPYBAAAAAAAAAAAAAAgCAAAAAAAA",
+              "Title": "UserFeedback.h",
+              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\UserFeedback.h",
+              "RelativeDocumentMoniker": "MHM_User\\UserFeedback.h",
+              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\UserFeedback.h",
+              "RelativeToolTip": "MHM_User\\UserFeedback.h",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAQwBkAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-07T07:38:25.352Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MHM_User_Functions.h",
-              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User_Functions.h",
-              "RelativeDocumentMoniker": "MHM_User\\MHM_User_Functions.h",
-              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User_Functions.h",
-              "RelativeToolTip": "MHM_User\\MHM_User_Functions.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-07T08:10:06.11Z",
+              "WhenOpened": "2024-05-09T03:12:32.899Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MHM_User_Classes.h",
-              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User_Classes.h",
-              "RelativeDocumentMoniker": "MHM_User\\MHM_User_Classes.h",
-              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User_Classes.h",
-              "RelativeToolTip": "MHM_User\\MHM_User_Classes.h",
-              "ViewState": "AQIAAHMAAAAAAAAAAAAgwIcAAAACAAAA",
+              "Title": "paymentSuccessFull.h",
+              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\paymentSuccessFull.h",
+              "RelativeDocumentMoniker": "MHM_User\\paymentSuccessFull.h",
+              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\paymentSuccessFull.h",
+              "RelativeToolTip": "MHM_User\\paymentSuccessFull.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-07T08:11:48.356Z",
+              "WhenOpened": "2024-05-09T03:10:56.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "paymentSuccessFull.h [Design]",
+              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\paymentSuccessFull.h",
+              "RelativeDocumentMoniker": "MHM_User\\paymentSuccessFull.h",
+              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\paymentSuccessFull.h [Design]",
+              "RelativeToolTip": "MHM_User\\paymentSuccessFull.h [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-09T03:09:56.568Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MHM_User.h",
+              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_User.h",
+              "RelativeDocumentMoniker": "MHM_User\\MHM_User.h",
+              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_User.h",
+              "RelativeToolTip": "MHM_User\\MHM_User.h",
+              "ViewState": "AQIAAL8DAAAAAAAAAAAlwMwDAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-09T03:08:13.671Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MHM_User.h [Design]",
-              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User.h",
+              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_User.h",
               "RelativeDocumentMoniker": "MHM_User\\MHM_User.h",
-              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\MHM_User\\MHM_User\\MHM_User.h [Design]",
+              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_User.h [Design]",
               "RelativeToolTip": "MHM_User\\MHM_User.h [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-07T06:58:42.556Z",
+              "WhenOpened": "2024-05-09T03:00:29.418Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MHM_User.cpp",
+              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_User.cpp",
+              "RelativeDocumentMoniker": "MHM_User\\MHM_User.cpp",
+              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_User.cpp",
+              "RelativeToolTip": "MHM_User\\MHM_User.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-09T01:06:11.28Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MHM_User_Classes.h",
+              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_User_Classes.h",
+              "RelativeDocumentMoniker": "MHM_User\\MHM_User_Classes.h",
+              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_User_Classes.h",
+              "RelativeToolTip": "MHM_User\\MHM_User_Classes.h",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-09T02:29:22.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MHM_Payment.h",
+              "DocumentMoniker": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_Payment.h",
+              "RelativeDocumentMoniker": "MHM_User\\MHM_Payment.h",
+              "ToolTip": "C:\\Users\\Muhammad Hassaan\\Desktop\\TOUCH WITH CAUTION\\MHM_User\\MHM_User\\MHM_Payment.h",
+              "RelativeToolTip": "MHM_User\\MHM_Payment.h",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAAAAkAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-09T02:24:53.264Z"
             }
           ]
         }

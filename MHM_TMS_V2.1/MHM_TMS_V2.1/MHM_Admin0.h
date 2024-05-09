@@ -215,15 +215,6 @@ namespace MHMTMSV21
 	private: System::Windows::Forms::TextBox^ Rating;
 	private: System::Windows::Forms::Button^ NextFeedback;
 
-
-
-
-
-
-
-
-
-
 private: System::Windows::Forms::Button^ ScheduleListContinue;
 	private: System::Windows::Forms::FlowLayoutPanel^ ScheduleRoutesBox;
 private: System::Windows::Forms::CheckedListBox^ Hours;
@@ -234,26 +225,7 @@ private: System::Windows::Forms::Button^ Continue5;
 private: System::Windows::Forms::FlowLayoutPanel^ TrainsBox;
 private: System::Windows::Forms::CheckedListBox^ TrainsList;
 private: System::Windows::Forms::Button^ TrainListContinue;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+private: System::Windows::Forms::Button^ Finish;
 
 	protected:
 
@@ -317,6 +289,7 @@ private: System::Windows::Forms::Button^ TrainListContinue;
 			this->TrainsBox = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->TrainsList = (gcnew System::Windows::Forms::CheckedListBox());
 			this->TrainListContinue = (gcnew System::Windows::Forms::Button());
+			this->Finish = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->RouteListBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->schedulesBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fareBG))->BeginInit();
@@ -904,6 +877,21 @@ private: System::Windows::Forms::Button^ TrainListContinue;
 			this->TrainListContinue->Visible = false;
 			this->TrainListContinue->Click += gcnew System::EventHandler(this, &MHM_Admin0::TrainListContinue_Click);
 			// 
+			// Finish
+			// 
+			this->Finish->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(46)),
+				static_cast<System::Int32>(static_cast<System::Byte>(147)));
+			this->Finish->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Finish.BackgroundImage")));
+			this->Finish->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->Finish->FlatAppearance->BorderSize = 0;
+			this->Finish->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->Finish->Location = System::Drawing::Point(1597, 909);
+			this->Finish->Name = L"Finish";
+			this->Finish->Size = System::Drawing::Size(236, 129);
+			this->Finish->TabIndex = 53;
+			this->Finish->UseVisualStyleBackColor = false;
+			this->Finish->Click += gcnew System::EventHandler(this, &MHM_Admin0::Finish_Click);
+			// 
 			// MHM_Admin0
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
@@ -913,6 +901,7 @@ private: System::Windows::Forms::Button^ TrainListContinue;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1924, 1050);
+			this->Controls->Add(this->Finish);
 			this->Controls->Add(this->TrainListContinue);
 			this->Controls->Add(this->TrainsBox);
 			this->Controls->Add(this->Continue5);
@@ -1272,6 +1261,11 @@ private: System::Windows::Forms::Button^ TrainListContinue;
 		this->Continue5->Visible = true;
 		this->TrainsList->Visible = false;
 		this->TrainListContinue->Visible = false;
+	}
+	
+	private: System::Void Finish_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		Application::Exit();
 	}
 };
 }

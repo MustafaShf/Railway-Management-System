@@ -19,11 +19,8 @@ using namespace System::Data;
 using namespace System::Drawing;
 using namespace System::Data::SqlClient;
 using namespace System::Runtime::InteropServices;
+using namespace System::Media;
 
-class Accounts
-{
-	//blah blah
-};
 
 //to take data from database that is set by admin
 class UserDataRetriever
@@ -90,7 +87,7 @@ public:
 	}
 };
 
-class UserSelection : public Accounts
+class UserSelection
 {
 	string route;		//the route that is selected by the user
 	int schedule;		//the schedule selected by user
@@ -117,6 +114,36 @@ public:
 		train = x;
 	}
 
+	void no_of_Executive_seatsSetter(int x)
+	{
+		no_of_Executive_seats = x;
+	}
+
+	void no_of_Economic_seatsSetter(int x)
+	{
+		no_of_Economic_seats = x;
+	}
+
+	void no_of_Business_seatsSetter(int x)
+	{
+		no_of_Business_seats = x;
+	}
+
+	int no_of_Executive_seatsGetter()
+	{
+		return no_of_Executive_seats;
+	}
+
+	int no_of_Economic_seatsGetter()
+	{
+		return no_of_Economic_seats;
+	}
+
+	int no_of_Business_seatsGetter()
+	{
+		return no_of_Business_seats;
+	}
+
 	string UserRouteGetter()
 	{
 		return route;
@@ -134,6 +161,24 @@ public:
 
 	UserSelection(string a = "", int b=0, int c=0, int d=0, int e=0, int f=0 ) : route(a), schedule(b), train(c), no_of_Executive_seats(d), no_of_Economic_seats(e),no_of_Business_seats(f)
 	{}
+};
+
+
+
+class paymentFare : public UserSelection
+{
+private:
+	int Totalfare;
+
+public:
+
+	int calculateFare(int economicSeats, int businessSeats, int executiveSeats);
+
+	// Getter for total fare
+	int getTotalFare() const
+	{
+		return Totalfare;
+	}
 };
 
 #endif 

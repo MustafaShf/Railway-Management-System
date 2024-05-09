@@ -18,6 +18,9 @@
     <ClCompile Include="MHM_User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="paymentSuccessFull.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MHM_User.h">
@@ -28,6 +31,21 @@
     </ClInclude>
     <ClInclude Include="MHM_User_Classes.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserFeedback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MHM_Payment_CLass.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MHM_Payment_Functions.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MHM_Payment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="paymentSuccessFull.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

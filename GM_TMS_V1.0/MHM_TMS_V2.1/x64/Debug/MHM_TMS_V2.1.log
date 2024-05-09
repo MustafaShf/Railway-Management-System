@@ -1,8 +1,0 @@
-﻿  MHM_Admin0.cpp
-C:\Users\itsmu\Desktop\New folder\Railway-Management-System-master (2)\Railway-Management-System-master\MHM_TMS_V2.1\MHM_TMS_V2.1\MHM_Admin0.h(34,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'MHM_Admin0.cpp')
-  
-  MHM_Admin0.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  MHM_TMS_V2.1.vcxproj -> C:\Users\itsmu\Desktop\New folder\Railway-Management-System-master (2)\Railway-Management-System-master\MHM_TMS_V2.1\x64\Debug\MHM_TMS_V2.1.exe
-  'pwsh.exe' is not recognized as an internal or external command,
-  operable program or batch file.

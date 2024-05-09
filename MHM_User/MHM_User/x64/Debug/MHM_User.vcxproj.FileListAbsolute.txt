@@ -1,3 +1,11 @@
 C:\Users\Muhammad Hassaan\Desktop\MHM_User\MHM_User\x64\Debug\MHM_User.vcxproj.AssemblyReference.cache
 C:\Users\Muhammad Hassaan\Desktop\MHM_User\MHM_User\x64\Debug\MHMUser.MHM_User.resources
 C:\Users\Muhammad Hassaan\Desktop\MHM_User\MHM_User\x64\Debug\MHM_User.vcxproj.GenerateResource.cache
+C:\Users\Muhammad Hassaan\Desktop\backup\MHM_User\MHM_User\x64\Debug\MHM_User.vcxproj.AssemblyReference.cache
+C:\Users\Muhammad Hassaan\Desktop\backup\MHM_User\MHM_User\x64\Debug\MHMUser.MHM_User.resources
+C:\Users\Muhammad Hassaan\Desktop\backup\MHM_User\MHM_User\x64\Debug\MHM_User.vcxproj.GenerateResource.cache
+C:\Users\Muhammad Hassaan\Desktop\TOUCH WITH CAUTION\MHM_User\MHM_User\x64\Debug\MHM_User.vcxproj.AssemblyReference.cache
+C:\Users\Muhammad Hassaan\Desktop\TOUCH WITH CAUTION\MHM_User\MHM_User\x64\Debug\MHMUser.MHM_User.resources
+C:\Users\Muhammad Hassaan\Desktop\TOUCH WITH CAUTION\MHM_User\MHM_User\x64\Debug\MHM_User.vcxproj.GenerateResource.cache
+C:\Users\Muhammad Hassaan\Desktop\TOUCH WITH CAUTION\MHM_User\MHM_User\x64\Debug\MHMUser.paymentSuccessFull.resources
+C:\Users\Muhammad Hassaan\Desktop\TOUCH WITH CAUTION\MHM_User\MHM_User\x64\Debug\MHMUser.MHM_Payment.resources

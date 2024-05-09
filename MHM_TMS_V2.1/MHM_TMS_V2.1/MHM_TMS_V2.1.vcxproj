@@ -124,7 +124,6 @@
     <ClCompile Include="MHM_Admin0.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DataStorers.h" />
     <ClInclude Include="MHM_Admin0.h">
       <FileType>CppForm</FileType>
     </ClInclude>

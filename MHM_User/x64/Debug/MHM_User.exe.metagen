@@ -1,4 +1,6 @@
+  MHMUser.MHM_Payment.resources - Embedded, ContainedInManifestFile, 
   MHMUser.MHM_User.resources - Embedded, ContainedInManifestFile, 
+  MHMUser.paymentSuccessFull.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly MHM_User, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
@@ -14,6 +16,19 @@ Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=
 	hash=None, flags=None
 Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
+Class UserFeedBack.UserFeedBack: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String Rating : Public
+Class MHMUser.paymentSuccessFull: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class MHMUser.MHM_Payment: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(UserSelection*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Ecn_Seats_Click(Object, EventArgs): PrivateScope, Public, HideBySig
 Class MHMUser.MHM_User: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

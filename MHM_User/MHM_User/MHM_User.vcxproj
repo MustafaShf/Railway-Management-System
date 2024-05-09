@@ -120,17 +120,35 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MHM_User.cpp" />
+    <ClCompile Include="paymentSuccessFull.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MHM_Payment.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MHM_Payment_CLass.h" />
+    <ClInclude Include="MHM_Payment_Functions.h" />
     <ClInclude Include="MHM_User.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MHM_User_Classes.h" />
     <ClInclude Include="MHM_User_Functions.h" />
+    <ClInclude Include="paymentSuccessFull.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="UserFeedback.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MHM_Payment.resx">
+      <DependentUpon>MHM_Payment.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MHM_User.resx">
       <DependentUpon>MHM_User.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="paymentSuccessFull.resx">
+      <DependentUpon>paymentSuccessFull.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

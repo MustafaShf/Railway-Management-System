@@ -105,11 +105,4 @@ int UserSelection::GetData(UserDataRetriever *& b)
 		return rowCount;
 	}
 }
-
-
-
-
-
-
-
 #endif

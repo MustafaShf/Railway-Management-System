@@ -29,8 +29,5 @@
     <ClInclude Include="MHM_Functions.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataStorers.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
