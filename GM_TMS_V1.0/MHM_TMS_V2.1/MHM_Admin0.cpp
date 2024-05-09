@@ -1,5 +1,6 @@
 #include "MHM_Admin0.h"
 #include "payment.h"
+#include "PaymentConfirmation.h"
 #include "UserFeedback.h"
 
 using namespace System;
@@ -19,7 +20,8 @@ int main()
     //UserFeedBack::UserFeedBack userfeed;
 
     //userfeed.ShowDialog();
-   Application::Run(gcnew MHMTMSV21::payment());
+  // Application::Run(gcnew MHMTMSV21::payment());
+   Application::Run(gcnew MHMTMSV21::PaymentConfirmation());
 
 
     return 0;

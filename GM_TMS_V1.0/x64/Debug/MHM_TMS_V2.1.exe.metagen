@@ -1,5 +1,6 @@
   MHMTMSV21.MHM_Admin0.resources - Embedded, ContainedInManifestFile, 
   MHMTMSV21.payment.resources - Embedded, ContainedInManifestFile, 
+  MHMTMSV21.PaymentConfirmation.resources - Embedded, ContainedInManifestFile, 
   MHMTMSV21.UserFeedback.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly MHM_TMS_V2.1, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
@@ -28,6 +29,9 @@ Class MHMTMSV21.payment: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     Ecn_Seats_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+Class MHMTMSV21.PaymentConfirmation: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class UserFeedBack.UserFeedBack: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

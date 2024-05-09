@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="MHM_Admin0.cpp" />
     <ClCompile Include="payment.cpp" />
+    <ClCompile Include="PaymentConfirmation.cpp" />
     <ClCompile Include="UserFeedback.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +136,9 @@
     <ClInclude Include="payment.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PaymentConfirmation.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="UserFeedback.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -145,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="payment.resx">
       <DependentUpon>payment.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentConfirmation.resx">
+      <DependentUpon>PaymentConfirmation.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserFeedback.resx">
       <DependentUpon>UserFeedback.h</DependentUpon>

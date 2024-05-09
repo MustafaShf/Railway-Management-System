@@ -24,6 +24,9 @@
     <ClCompile Include="payment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PaymentConfirmation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MHM_Admin0.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="payment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PaymentConfirmation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
